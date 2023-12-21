@@ -1,19 +1,19 @@
-const router = require("express").Router({mergeParams:true})
+const router = require("express").Router()
 const controller = require("./movies.controller")
 
-router.route("/movies")
-    .get(controller.list)
+router.route("/")
+   .get(controller.list)
+
+router.route("/:movieId")
     .get(controller.read)
 
-router.route("/movies/:movieId")
-    .get(controller.read)
-
-router.route("/movies/:movieId/theaters")
+router.route("/:movieId/theaters")
     .get(controller.readTheaters)
 
-router.route("/movies/:movieId/reviews")
+router.route("/:movieId/reviews")
     .get(controller.readReviews)
 
-module.exports = {
-    router
-}
+router.route("/:movieId/critics")
+    .get(controller.listCritics)
+
+module.exports = router
